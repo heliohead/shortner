@@ -13,7 +13,7 @@ get '/' do erb :index; end
 post '/' do
   url = params[:url]
   if url =~ /\Ahttps?:\/\//
-    @shortened = 'valid'
+    @shortened = Url.find_or_create(url: url).id
     erb :shortened
   else
     @error = 'This url is not valid!'
