@@ -1,6 +1,4 @@
-require 'sinatra'
-require 'sequel'
-require 'alphadecimal'
+%w(sinatra sequel alphadecimal).each { |lib| require lib }
 
 DB = Sequel.connect('sqlite://shortner.db')
 DB.create_table? :urls do
