@@ -25,3 +25,7 @@ __END__
 
 @@ error
 <p><%= @error %></p>
+
+@@ shortened
+Your shortened url is:
+<a href='<%= "#{env['HTTP_REFERER']}#{@shortened}" %>' target="_blank"><%= "#{env['HTTP_REFERER']}#{@shortened}" %></a>
