@@ -20,6 +20,16 @@ post '/' do
   end
 end
 
+get '/:id' do
+  id = Url.find_shorten(params[:id])
+  if id
+    redirect id.url
+  else
+    @error = 'This Url does not exist'
+    erb :error
+  end
+end
+
 __END__
 
 @@ layout
