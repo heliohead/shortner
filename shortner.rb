@@ -22,3 +22,6 @@ __END__
   <input type="text" name="url">
   <p><input type="submit" value="Continue →"></p>
 </form>
+
+@@ error
+<p><%= @error %></p>
