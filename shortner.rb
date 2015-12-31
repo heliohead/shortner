@@ -4,6 +4,17 @@ get '/' do erb :index; end
 
 __END__
 
+@@ layout
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shortner</title>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
 @@ index
 <h1>Shortner!</h1>
 <form action="/" method="post">
