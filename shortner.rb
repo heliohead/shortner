@@ -4,7 +4,12 @@ get '/' do erb :index; end
 
 post '/' do
   url = params[:url]
-  puts url
+  if url =~ /\Ahttps?:\/\//
+    @shortened = 'valid'
+    erb :shortened
+  else
+    @error = 'This url is not valid!'
+  end
 end
 
 __END__
