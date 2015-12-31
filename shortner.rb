@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'sequel'
+require 'alphadecimal'
 
 DB = Sequel.connect('sqlite://shortner.db')
 DB.create_table? :urls do
@@ -6,14 +8,22 @@ DB.create_table? :urls do
   varchar :url
 end
 
-class Url < Sequel::Model; end
+class Url < Sequel::Model
+  def shorten
+    self.id.alphadecimal
+  end
+
+  def self.find_shorten(shorten)
+    find(id: shorten.alphadecimal)
+  end
+end
 
 get '/' do erb :index; end
 
 post '/' do
   url = params[:url]
   if url =~ /\Ahttps?:\/\//
-    @shortened = Url.find_or_create(url: url).id
+    @shortened = Url.find_or_create(url: url).shorten
     erb :shortened
   else
     @error = 'This url is not valid!'
