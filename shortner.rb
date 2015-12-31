@@ -2,6 +2,11 @@ require 'sinatra'
 
 get '/' do erb :index; end
 
+post '/' do
+  url = params[:url]
+  puts url
+end
+
 __END__
 
 @@ layout
