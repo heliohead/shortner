@@ -1,5 +1,13 @@
 require 'sinatra'
 
+DB = Sequel.connect('sqlite://shortner.db')
+DB.create_table? :urls do
+  primary_key :id
+  varchar :url
+end
+
+class Url < Sequel::Model; end
+
 get '/' do erb :index; end
 
 post '/' do
